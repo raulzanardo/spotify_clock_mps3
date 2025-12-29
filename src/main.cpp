@@ -26,6 +26,8 @@ String previousAlbumArtUrl = " ";
 uint16_t leastPredominantColor = 0;
 uint16_t mostPredominantColor = 0;
 bool isSpotifyPlaying = false;
+bool spotifyInitialized = false;
+bool spotifyAuthenticated = false;
 const char *weekDays[] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
 
 // objects
@@ -383,6 +385,84 @@ void drawClock(String clockText, uint16_t bodyColor, uint16_t counterColor, bool
     display->printf(clockText.c_str());
 }
 
+bool hasInternetConnectivity()
+{
+    HTTPClient http;
+    http.setConnectTimeout(3000);
+    http.setTimeout(3000);
+
+    if (!http.begin("http://clients3.google.com/generate_204"))
+    {
+        Serial.println(F("Connectivity check begin failed"));
+        return false;
+    }
+
+    int code = http.GET();
+    http.end();
+    bool ok = code == 204;
+    if (ok)
+    {
+        Serial.println(F("Internet reachable"));
+    }
+    else
+    {
+        Serial.println("No internet, code: " + String(code));
+    }
+    return ok;
+}
+
+void ensureSpotifyReady()
+{
+    if (spotifyAuthenticated)
+        return;
+
+    if (WiFi.status() != WL_CONNECTED)
+    {
+        Serial.println(F("WiFi lost, cannot init Spotify"));
+        spotifyInitialized = false;
+        return;
+    }
+
+    if (!hasInternetConnectivity())
+    {
+        Serial.println(F("No internet, deferring Spotify auth"));
+        return;
+    }
+
+    if (!spotifyInitialized)
+    {
+        Serial.print(F("Spotify begin: "));
+        sp.begin();
+        spotifyInitialized = true;
+        Serial.println(F("started"));
+    }
+
+    if (!sp.is_auth())
+    {
+        Serial.print(F("Authenticating Spotify (timeout 10s): "));
+        unsigned long start = millis();
+        while (!sp.is_auth() && millis() - start < 10000)
+        {
+            sp.handle_client();
+            delay(10);
+        }
+        if (sp.is_auth())
+        {
+            spotifyAuthenticated = true;
+            Serial.printf("Authenticated! Refresh token: %s\n", sp.get_user_tokens().refresh_token);
+        }
+        else
+        {
+            Serial.println(F("Auth not completed, will retry later"));
+        }
+    }
+    else
+    {
+        spotifyAuthenticated = true;
+        Serial.println(F("Spotify already authenticated"));
+    }
+}
+
 void setup()
 {
     // Initialize USBSerial port
@@ -490,24 +570,8 @@ void setup()
     }
     Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
 
-    // Initialize Spotify
-    Serial.print(F("Spotify begin: "));
-    sp.begin(); // Start the webserver
-
-    if (!sp.is_auth())
-    {
-        Serial.print(F("Wait for the user to authenticate: "));
-        while (!sp.is_auth())
-        {
-            // Wait for the user to authenticate
-            sp.handle_client(); // Handle the client, this is necessary otherwise the webserver won't work
-        }
-        Serial.printf("Authenticated! Refresh token: %s\n", sp.get_user_tokens().refresh_token);
-    }
-    else
-    {
-        Serial.println(F("OK"));
-    }
+    // Initialize Spotify (lazy, internet-checked)
+    ensureSpotifyReady(); // Will defer if no internet
 
     pinMode(PIN_LED, OUTPUT);
     pinMode(PIN_LIGHT_SENSOR, INPUT);
@@ -542,6 +606,35 @@ void loop()
         Serial.println("Reconnecting to WiFi...");
         WiFi.disconnect();
         WiFi.reconnect();
+    }
+
+    ensureSpotifyReady();
+
+    if (!spotifyAuthenticated)
+    {
+        Serial.println(F("Spotify not ready, showing clock only"));
+
+        display->clearScreen();
+
+        struct tm timeinfo;
+        if (!getLocalTime(&timeinfo))
+        {
+            Serial.println(F("Failed to obtain time"));
+        }
+
+        char datestring[6];
+        snprintf_P(datestring,
+                   countof(datestring),
+                   PSTR("%02u:%02u"),
+                   timeinfo.tm_hour,
+                   timeinfo.tm_min);
+
+        drawMonthDay(timeinfo.tm_mday, timeinfo.tm_hour);
+        drawWeekDay(timeinfo.tm_wday, timeinfo.tm_hour);
+        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= SHOW_HOUR_START || timeinfo.tm_hour >= SHOW_HOUR_END);
+        display->flipDMABuffer();
+        delay(2000);
+        return;
     }
 
     // Get the current uptime
