@@ -233,7 +233,7 @@ void drawWeekDay(int day, int hour)
 {
 
     // Only show between configured hours
-    if (hour >= SHOW_HOUR_START && hour < SHOW_HOUR_END)
+    if (hour >= NIGHT_END_HOUR && hour < NIGHT_START_HOUR)
     {
         // Get the color based on the time
         uint16_t baseColor = getClockDigitColor(hour, 0);
@@ -285,7 +285,7 @@ void drawWeekDay(int day, int hour)
 void drawMonthDay(int day, int hour)
 {
     // Only show between configured hours
-    if (hour >= SHOW_HOUR_START && hour < SHOW_HOUR_END)
+    if (hour >= NIGHT_END_HOUR && hour < NIGHT_START_HOUR)
     {
 
         // Get the color based on the time
@@ -631,7 +631,7 @@ void loop()
 
         drawMonthDay(timeinfo.tm_mday, timeinfo.tm_hour);
         drawWeekDay(timeinfo.tm_wday, timeinfo.tm_hour);
-        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= SHOW_HOUR_START || timeinfo.tm_hour >= SHOW_HOUR_END);
+        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
         display->flipDMABuffer();
         delay(2000);
         return;
@@ -757,7 +757,7 @@ void loop()
 
         drawWeekDay(timeinfo.tm_wday, timeinfo.tm_hour);
 
-        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= SHOW_HOUR_START || timeinfo.tm_hour >= SHOW_HOUR_END);
+        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
 
         currentAlbumArtUrl = "";
         previousAlbumArtUrl = " ";
