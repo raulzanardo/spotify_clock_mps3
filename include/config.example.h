@@ -74,10 +74,16 @@
 #define DISPLAY_BRIGHTNESS 30   // 0-255 for display->setBrightness8
 #define NEOPIXEL_BRIGHTNESS 255 // 0-255 for NeoPixel
 #define COLOR_SIMILARITY_THRESHOLD 10
-#define SHOW_HOUR_START 7
-#define SHOW_HOUR_END 22
+
+// ===== COLOR TEMPERATURE SETTINGS =====
+// Night time hour range (0-23 format)
+#define NIGHT_START_HOUR 22  // 10 PM
+#define NIGHT_END_HOUR 6     // 6 AM
 
 // Color temperature settings for clock digits (in Kelvin)
 #define NIGHT_TEMP 2000.0f   // Warm light for night
 #define MIN_TEMP 2500.0f     // Slightly warmer minimum for São Paulo's climate
 #define MAX_TEMP 7000.0f     // Slightly cooler maximum for brighter days
+
+// Nighttime brightness dimming factor (0.0 to 1.0)
+#define NIGHT_DIM_FACTOR 0.3f
