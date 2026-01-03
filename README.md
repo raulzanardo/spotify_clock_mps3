@@ -18,6 +18,8 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
 ![Clock Display](images/clock.png)
 
 ### Album Art Display
+**Legend:** Primary = clock border/outline color. Secondary = clock fill/text color.
+
 <table>
   <tr>
     <td><a href="images/img_1.png" target="_blank"><img src="images/img_1.png" alt="Album Art 1" width="200"/></a></td>
@@ -61,6 +63,8 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
 </table>
 
 (ignore the 3 dead pixels on the bottom led matrix, I let this on fall once)
+
+
 
 ## Hardware Requirements
 
