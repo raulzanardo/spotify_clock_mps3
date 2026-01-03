@@ -18,7 +18,20 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
 ![Clock Display](images/clock.png)
 
 ### Album Art Display
-![Album Art Display](images/album_art.png)
+<table>
+  <tr>
+    <td><img src="images/img_1.png" alt="Album Art 1" width="200"/></td>
+    <td><img src="images/img_2.png" alt="Album Art 2" width="200"/></td>
+    <td><img src="images/img_3.png" alt="Album Art 3" width="200"/></td>
+    <td><img src="images/img_4.png" alt="Album Art 4" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://i.scdn.co/image/ab67616d00001e02d076021191250b5fec6b6c58" alt="Real Cover 1" width="200"/></td>
+    <td align="center"><img src="https://i.scdn.co/image/ab67616d00001e021e0920912a7e005e8f4bae8f" alt="Real Cover 2" width="200"/></td>
+    <td align="center"><img src="https://i.scdn.co/image/ab67616d00001e026c6fb228ad10a71122880a97" alt="Real Cover 3" width="200"/></td>
+    <td align="center"><img src="https://i.scdn.co/image/ab67616d00001e02c2ae4095962f75cdf57750ca" alt="Real Cover 4" width="200"/></td>
+  </tr>
+</table>
 
 ## Hardware Requirements
 
