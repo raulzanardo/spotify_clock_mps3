@@ -35,26 +35,26 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
   <tr>
     <td align="center">
       <div style="text-align:left; display:inline-block;">
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#001818;border:1px solid #444;"></span><span style="font-size:12px;">Primary #001818</span></div>
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#CEA600;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #CEA600</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/001818/18x18" alt="#001818" width="18" height="18"/><span style="font-size:12px;">Primary #001818</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/CEA600/18x18" alt="#CEA600" width="18" height="18"/><span style="font-size:12px;">Secondary #CEA600</span></div>
       </div>
     </td>
     <td align="center">
       <div style="text-align:left; display:inline-block;">
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#DE1821;border:1px solid #444;"></span><span style="font-size:12px;">Primary #DE1821</span></div>
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000000;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #000000</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/DE1821/18x18" alt="#DE1821" width="18" height="18"/><span style="font-size:12px;">Primary #DE1821</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/000000/18x18" alt="#000000" width="18" height="18"/><span style="font-size:12px;">Secondary #000000</span></div>
       </div>
     </td>
     <td align="center">
       <div style="text-align:left; display:inline-block;">
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000000;border:1px solid #444;"></span><span style="font-size:12px;">Primary #000000</span></div>
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#AD7500;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #AD7500</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/000000/18x18" alt="#000000" width="18" height="18"/><span style="font-size:12px;">Primary #000000</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/AD7500/18x18" alt="#AD7500" width="18" height="18"/><span style="font-size:12px;">Secondary #AD7500</span></div>
       </div>
     </td>
     <td align="center">
       <div style="text-align:left; display:inline-block;">
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#FFFFFF;border:1px solid #444;"></span><span style="font-size:12px;">Primary #FFFFFF</span></div>
-        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000010;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #000010</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/FFFFFF/18x18" alt="#FFFFFF" width="18" height="18"/><span style="font-size:12px;">Primary #FFFFFF</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><img src="https://singlecolorimage.com/get/000010/18x18" alt="#000010" width="18" height="18"/><span style="font-size:12px;">Secondary #000010</span></div>
       </div>
     </td>
   </tr>
