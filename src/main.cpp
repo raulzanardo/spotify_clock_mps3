@@ -204,11 +204,15 @@ void drawJPEG(const char *filename, int xpos, int ypos)
     leastPredominantColor = minmax.first->first;
 
     uint8_t r, g, b;
+    uint8_t lr, lg, lb;
 
     display->color565to888(mostPredominantColor, r, g, b);
+    display->color565to888(leastPredominantColor, lr, lg, lb);
 
     pixels.setPixelColor(0, pixels.Color(r, g, b));
     pixels.show();
+
+    Serial.printf("Album colors -> primary RGB: (%u, %u, %u) secondary RGB: (%u, %u, %u)\n", r, g, b, lr, lg, lb);
 
     // if mostPredominantColor is similar to leastPredominantColor the second least predominat font
 
@@ -227,6 +231,11 @@ void drawJPEG(const char *filename, int xpos, int ypos)
             leastPredominantColor = invertColor(mostPredominantColor);
         }
     }
+
+    // Log final colors used for clock after adjustments
+    display->color565to888(mostPredominantColor, r, g, b);
+    display->color565to888(leastPredominantColor, lr, lg, lb);
+    Serial.printf("Clock colors -> primary RGB: (%u, %u, %u) secondary RGB: (%u, %u, %u)\n", r, g, b, lr, lg, lb);
 }
 
 void drawWeekDay(int day, int hour)

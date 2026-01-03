@@ -31,7 +31,36 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
     <td align="center"><a href="https://i.scdn.co/image/ab67616d00001e026c6fb228ad10a71122880a97" target="_blank"><img src="https://i.scdn.co/image/ab67616d00001e026c6fb228ad10a71122880a97" alt="Real Cover 3" width="200"/></a></td>
     <td align="center"><a href="https://i.scdn.co/image/ab67616d00001e02c2ae4095962f75cdf57750ca" target="_blank"><img src="https://i.scdn.co/image/ab67616d00001e02c2ae4095962f75cdf57750ca" alt="Real Cover 4" width="200"/></a></td>
   </tr>
+
+  <tr>
+    <td align="center">
+      <div style="text-align:left; display:inline-block;">
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#001818;border:1px solid #444;"></span><span style="font-size:12px;">Primary #001818</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#CEA600;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #CEA600</span></div>
+      </div>
+    </td>
+    <td align="center">
+      <div style="text-align:left; display:inline-block;">
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#DE1821;border:1px solid #444;"></span><span style="font-size:12px;">Primary #DE1821</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000000;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #000000</span></div>
+      </div>
+    </td>
+    <td align="center">
+      <div style="text-align:left; display:inline-block;">
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000000;border:1px solid #444;"></span><span style="font-size:12px;">Primary #000000</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#AD7500;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #AD7500</span></div>
+      </div>
+    </td>
+    <td align="center">
+      <div style="text-align:left; display:inline-block;">
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#FFFFFF;border:1px solid #444;"></span><span style="font-size:12px;">Primary #FFFFFF</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:18px;height:18px;background:#000010;border:1px solid #444;"></span><span style="font-size:12px;">Secondary #000010</span></div>
+      </div>
+    </td>
+  </tr>
 </table>
+
+(ignore the 3 dead pixels on the bottom led matrix, I let this on fall once)
 
 ## Hardware Requirements
 
