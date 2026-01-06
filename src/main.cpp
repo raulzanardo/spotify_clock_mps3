@@ -675,6 +675,13 @@ void loop()
             isSpotifyPlaying = false;
         }
 
+        if(currentState.status_code == 204)
+        {
+            Serial.println(F("No content, playback not active"));
+
+            isSpotifyPlaying = false;
+        }
+
         if (currentState.status_code == 401)
         {
             Serial.println(F("The access token expired"));
