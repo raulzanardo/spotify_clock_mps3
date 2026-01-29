@@ -2,6 +2,21 @@
 
 A real-time display system that shows your currently playing Spotify track on a 64×64 LED matrix, with intelligent color-temperature-aware clock display that adapts to the album artwork.
 
+> **⚠️ Disclaimer: Spotify API Project Creation Currently Unavailable**
+>
+> As of late January 2026, there is no official date for when new project creation will return. Spotify has not provided a specific timeline or estimated time of arrival (ETA) for restoring this feature.
+> The current situation as of January 29, 2026, includes the following:
+>
+> - **Official Status**: Spotify staff confirmed they are "investigating" and that "new integrations are currently on hold" to improve reliability and performance.
+> - **Duration of Hold**: The "Create App" button has been disabled for many users since late December 2025.
+> - **Ongoing Review**: In a community update on January 28, 2026, Spotify reiterated that the issue is "on their radar" but explicitly stated they cannot commit to a specific timeframe for a fix.
+>
+> **Temporary Workarounds**  
+> If you need immediate access for a project or dissertation, consider these options reported by the developer community:
+>
+> - **Reuse Old Client IDs**: If you or a teammate have an existing application in the Spotify Developer Dashboard, you can continue to use its Client ID and Client Secret for new local development by simply updating the Redirect URIs.
+> - **Request Access from Others**: Some developers on platforms like the Spotify API Subreddit have offered to add collaborators or share unused "Development Mode" apps for urgent academic use.
+
 ## Features
 
 - **Now Playing Display**: Shows album art from your currently playing Spotify track in full color on an LED matrix
@@ -15,9 +30,11 @@ A real-time display system that shows your currently playing Spotify track on a 
 This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [Aliexpress](https://pt.aliexpress.com/item/1005001958513042.html?spm=a2g0o.order_list.order_list_main.212.31facaa4BLPk5P&gatewayAdapt=glo2bra).
 
 ### Clock Display
+
 ![Clock Display](images/clock.png)
 
 ### Album Art Display
+
 **Legend:** Primary = clock border/outline color. Secondary = clock fill/text color.
 
 <table>
@@ -64,14 +81,11 @@ This one was connected to a 64x64 3mmm pitch SMD2121 led matrix the I got from [
 
 (ignore the 3 dead pixels on the bottom led matrix, I let this on fall once)
 
-
-
 ## Hardware Requirements
 
 **Recommended Board:** [Adafruit Matrix Portal S3](https://www.adafruit.com/product/5778) — An ESP32-S3 based board with built-in HUB75 LED matrix interface and native USB support, designed for internet-connected LED matrix projects.
 
 ![Adafruit Matrix Portal S3](images/Adafruit_Matrix_Portal_S3.jpg)
-
 
 **Compatible Alternatives:** Any ESP32-S3 microcontroller with enough available GPIO pins (minimum 20+ GPIOs), external PSRAM for color detection and native USB support can work with this project by configuring the pin mapping in `include/config.h`.
 
@@ -90,10 +104,10 @@ The project uses the Adafruit MatrixPortal S3 pin mapping for the HUB75 LED matr
 Color Pins:
   R1: GPIO 42, G1: GPIO 41, B1: GPIO 40
   R2: GPIO 38, G2: GPIO 39, B2: GPIO 37
-  
+
 Address Pins:
   A: GPIO 45, B: GPIO 36, C: GPIO 35, D: GPIO 34
-  
+
 Control Pins:
   OE: GPIO 33, CLK: GPIO 32, LAT: GPIO 31
 ```
@@ -141,6 +155,7 @@ Use the PlatformIO buttons in the VS Code extension to build, upload and open th
 ## Configuration Reference
 
 ### Network Settings
+
 ```cpp
 #define WIFI_SSID "Your_Network_Name"
 #define WIFI_PASS "Your_Network_Password"
@@ -148,23 +163,28 @@ Use the PlatformIO buttons in the VS Code extension to build, upload and open th
 ```
 
 ### Spotify API Credentials
+
 ```cpp
 #define CLIENT_ID "your_spotify_client_id"
 #define CLIENT_SECRET "your_spotify_client_secret"
 #define REFRESH_TOKEN "your_spotify_refresh_token"
 ```
+
 **Note:** Keep these credentials private! Never commit to public repositories.
 
 ### Time Settings
+
 ```cpp
 #define TIME_ZONE "BRT3"              // Timezone (BRT3 = Brasília Time UTC-3)
 #define UTC_OFFSET_SECONDS -10800     // UTC offset in seconds
 #define ntpServer1 "pool.ntp.org"     // Primary NTP server
 #define ntpServer2 "time.nist.gov"    // Fallback NTP server
 ```
+
 **Common timezone values:** `PST8PDT` (Pacific), `EST5EDT` (Eastern), `CST6CDT` (Central), `GMT0` (UTC), `CET-1CEST` (Central Europe)
 
 ### Color Temperature Settings
+
 ```cpp
 #define CONFIG_NIGHT_START_HOUR 22    // Night begins (0-23 format)
 #define CONFIG_NIGHT_END_HOUR 6       // Night ends
@@ -175,6 +195,7 @@ Use the PlatformIO buttons in the VS Code extension to build, upload and open th
 ```
 
 ### Pin Configuration (Adafruit MatrixPortal S3 specific)
+
 ```cpp
 // Color pins
 #define PIN_R1 42
@@ -196,10 +217,13 @@ Use the PlatformIO buttons in the VS Code extension to build, upload and open th
 #define PIN_CLK 32
 #define PIN_LAT 31
 ```
+
 **For other boards:** Modify these pins to match your hardware connections.
 
 ### SpotifyEsp32 Feature Flags
+
 Disable unwanted Spotify API features to reduce memory usage:
+
 ```cpp
 #define DISABLE_AUDIOBOOKS
 #define DISABLE_CATEGORIES
@@ -211,6 +235,7 @@ Disable unwanted Spotify API features to reduce memory usage:
 #define DISABLE_SEARCH
 #define DISABLE_SHOWS
 ```
+
 Only the essential playback data is fetched by default.
 
 ## Color Temperature Algorithm
@@ -249,6 +274,7 @@ The algorithm handles color contrast intelligently with three possible scenarios
 3. **No Suitable Contrast - Color Inversion**: If even the most vibrant color is too similar to the predominant color, the algorithm generates a complementary color by inverting the most predominant color's RGB values. This guarantees maximum contrast while maintaining visual harmony.
 
 This multi-level fallback system ensures the clock is always readable, regardless of the album artwork's color composition.
+
 ## File Structure
 
 ```
@@ -292,6 +318,7 @@ SOFTWARE.
 ## Contributing
 
 Contributions welcome! Please ensure:
+
 - No secrets are committed (use `include/config.h` locally)
 - Code follows existing style (const correctness, USBSerial debugging)
 - Changes are tested on real hardware before PR
@@ -299,18 +326,22 @@ Contributions welcome! Please ensure:
 ## Libraries & Resources
 
 ### Display & Graphics
+
 - [ESP32-HUB75-MatrixPanel-I2S-DMA](https://github.com/mrfaptastic/ESP32-HUB75-MatrixPanel-I2S-DMA) — HUB75 LED matrix driver library
 - [JPEGDEC](https://github.com/bitbank2/JPEGDEC) — JPEG decoder for embedded systems
 
 ### API & Connectivity
+
 - [SpotifyEsp32](https://github.com/jetcitycomet/SpotifyEsp32) — Spotify API client library for ESP32
 
 ### External APIs
+
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api) — Spotify playback state and metadata
 
 ## Inspiration & Credits
 
 **Project inspired by:**
+
 - [64x64 RGB LED Matrix Album Art Display on Pi 3B+](https://www.reddit.com/r/raspberry_pi/comments/ziz4hk/my_64x64_rgb_led_matrix_album_art_display_pi_3b/) — Original concept by the Raspberry Pi community
 - [Live Spotify Album Art Display Tutorial](https://learn.sparkfun.com/tutorials/live-spotify-album-art-display/all) — SparkFun's guide to album art displays
 - [Tuneshine](https://www.tuneshine.rocks/) - A full product that displays album art from spotify, apple music, sonos and last.fm.
