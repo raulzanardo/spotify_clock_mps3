@@ -83,65 +83,65 @@ static inline uint16_t getClockDigitColor(int hour, int minute)
 // Function to calculate color similarity
 bool areColorsSimilar(uint16_t color1, uint16_t color2, uint16_t threshold)
 {
-  uint8_t r1 = (color1 >> 11) & 0x1F;
-  uint8_t g1 = (color1 >> 5) & 0x3F;
-  uint8_t b1 = color1 & 0x1F;
+    uint8_t r1 = (color1 >> 11) & 0x1F;
+    uint8_t g1 = (color1 >> 5) & 0x3F;
+    uint8_t b1 = color1 & 0x1F;
 
-  uint8_t r2 = (color2 >> 11) & 0x1F;
-  uint8_t g2 = (color2 >> 5) & 0x3F;
-  uint8_t b2 = color2 & 0x1F;
+    uint8_t r2 = (color2 >> 11) & 0x1F;
+    uint8_t g2 = (color2 >> 5) & 0x3F;
+    uint8_t b2 = color2 & 0x1F;
 
-  uint16_t difference = std::abs(r1 - r2) + std::abs(g1 - g2) + std::abs(b1 - b2);
-  return difference <= threshold;
+    uint16_t difference = std::abs(r1 - r2) + std::abs(g1 - g2) + std::abs(b1 - b2);
+    return difference <= threshold;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Local helper: convert RGB565 -> 8-bit RGB
 static inline void rgb565ToRgb8(uint16_t color, uint8_t &r, uint8_t &g, uint8_t &b)
 {
-  uint8_t r5 = (color >> 11) & 0x1F;
-  uint8_t g6 = (color >> 5) & 0x3F;
-  uint8_t b5 = color & 0x1F;
+    uint8_t r5 = (color >> 11) & 0x1F;
+    uint8_t g6 = (color >> 5) & 0x3F;
+    uint8_t b5 = color & 0x1F;
 
-  r = static_cast<uint8_t>((r5 * 255 + 15) / 31);
-  g = static_cast<uint8_t>((g6 * 255 + 31) / 63);
-  b = static_cast<uint8_t>((b5 * 255 + 15) / 31);
+    r = static_cast<uint8_t>((r5 * 255 + 15) / 31);
+    g = static_cast<uint8_t>((g6 * 255 + 31) / 63);
+    b = static_cast<uint8_t>((b5 * 255 + 15) / 31);
 }
 
 // Local helper: convert 8-bit RGB -> RGB565
 static inline uint16_t rgb8ToRgb565(uint8_t r, uint8_t g, uint8_t b)
 {
-  uint16_t r5 = static_cast<uint16_t>((r * 31 + 127) / 255);
-  uint16_t g6 = static_cast<uint16_t>((g * 63 + 127) / 255);
-  uint16_t b5 = static_cast<uint16_t>((b * 31 + 127) / 255);
-  return (r5 << 11) | (g6 << 5) | b5;
+    uint16_t r5 = static_cast<uint16_t>((r * 31 + 127) / 255);
+    uint16_t g6 = static_cast<uint16_t>((g * 63 + 127) / 255);
+    uint16_t b5 = static_cast<uint16_t>((b * 31 + 127) / 255);
+    return (r5 << 11) | (g6 << 5) | b5;
 }
 
 uint16_t invertColor(uint16_t color)
 {
-  uint8_t r, g, b;
-  rgb565ToRgb8(color, r, g, b);
+    uint8_t r, g, b;
+    rgb565ToRgb8(color, r, g, b);
 
-  r = 255 - r;
-  g = 255 - g;
-  b = 255 - b;
+    r = 255 - r;
+    g = 255 - g;
+    b = 255 - b;
 
-  return rgb8ToRgb565(r, g, b);
+    return rgb8ToRgb565(r, g, b);
 }
 
 // Function to calculate vibrancy (combination of saturation and brightness)
 float calculateVibrancy(uint16_t color)
 {
-  uint8_t r, g, b;
-  rgb565ToRgb8(color, r, g, b);
+    uint8_t r, g, b;
+    rgb565ToRgb8(color, r, g, b);
 
-  float rf = r / 255.0f, gf = g / 255.0f, bf = b / 255.0f;
-  float maxv = std::max({rf, gf, bf});
-  float minv = std::min({rf, gf, bf});
+    float rf = r / 255.0f, gf = g / 255.0f, bf = b / 255.0f;
+    float maxv = std::max({rf, gf, bf});
+    float minv = std::min({rf, gf, bf});
 
-  float saturation = (maxv == 0.0f) ? 0.0f : (maxv - minv) / maxv;
-  float brightness = (rf + gf + bf) / 3.0f;
+    float saturation = (maxv == 0.0f) ? 0.0f : (maxv - minv) / maxv;
+    float brightness = (rf + gf + bf) / 3.0f;
 
-  // Combine saturation and brightness for vibrancy
-  return saturation * brightness;
+    // Combine saturation and brightness for vibrancy
+    return saturation * brightness;
 }

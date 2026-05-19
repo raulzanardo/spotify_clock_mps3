@@ -38,7 +38,7 @@
 #define NTP_DAYLIGHT_OFFSET_SECONDS (0)
 
 // RGB pins
-#define PIN_R1 42 
+#define PIN_R1 42
 #define PIN_G1 41
 #define PIN_B1 40
 #define PIN_R2 38
@@ -77,13 +77,13 @@
 
 // ===== COLOR TEMPERATURE SETTINGS =====
 // Night time hour range (0-23 format)
-#define NIGHT_START_HOUR 22  // 10 PM
-#define NIGHT_END_HOUR 6     // 6 AM
+#define NIGHT_START_HOUR 22 // 10 PM
+#define NIGHT_END_HOUR 7    // 7 AM
 
 // Color temperature settings for clock digits (in Kelvin)
-#define NIGHT_TEMP 2000.0f   // Warm light for night
-#define MIN_TEMP 2500.0f     // Slightly warmer minimum for São Paulo's climate
-#define MAX_TEMP 7000.0f     // Slightly cooler maximum for brighter days
+#define NIGHT_TEMP 2000.0f // Warm light for night
+#define MIN_TEMP 2500.0f   // Slightly warmer minimum for São Paulo's climate
+#define MAX_TEMP 7000.0f   // Slightly cooler maximum for brighter days
 
 // Nighttime brightness dimming factor (0.0 to 1.0)
 #define NIGHT_DIM_FACTOR 0.3f
