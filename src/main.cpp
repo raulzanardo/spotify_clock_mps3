@@ -640,7 +640,7 @@ void loop()
 
         drawMonthDay(timeinfo.tm_mday, timeinfo.tm_hour);
         drawWeekDay(timeinfo.tm_wday, timeinfo.tm_hour);
-        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
+        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour < NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
         display->flipDMABuffer();
         delay(2000);
         return;
@@ -653,7 +653,7 @@ void loop()
 
     Serial.println(F("Checking Spotify state"));
 
-    response currentState = sp.currently_playing();
+    response currentState = sp.get_currently_playing_track();
 
     /*
     State
@@ -675,7 +675,7 @@ void loop()
             isSpotifyPlaying = false;
         }
 
-        if(currentState.status_code == 204)
+        if (currentState.status_code == 204)
         {
             Serial.println(F("No content, playback not active"));
 
@@ -687,7 +687,7 @@ void loop()
             Serial.println(F("The access token expired"));
 
             sp.get_access_token();
-            currentState = sp.currently_playing();
+            currentState = sp.get_currently_playing_track();
         }
 
         if (currentState.status_code == 403)
@@ -703,7 +703,7 @@ void loop()
         if (currentState.reply["message"].as<String>().equals("Timeout receiving headers"))
         {
             Serial.println(F("Timeout receiving headers"));
-            currentState = sp.currently_playing();
+            currentState = sp.get_currently_playing_track();
         }
     }
 
@@ -773,7 +773,7 @@ void loop()
 
         drawWeekDay(timeinfo.tm_wday, timeinfo.tm_hour);
 
-        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour <= NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
+        drawClock(datestring, getClockDigitColor(timeinfo.tm_hour, timeinfo.tm_min), 0, timeinfo.tm_hour < NIGHT_END_HOUR || timeinfo.tm_hour >= NIGHT_START_HOUR);
 
         currentAlbumArtUrl = "";
         previousAlbumArtUrl = " ";
